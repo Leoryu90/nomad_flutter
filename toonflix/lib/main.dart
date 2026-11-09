@@ -12,50 +12,43 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  List<int> numbers = [];
-
   void onClick() {
-    setState(() {
-      numbers.add(numbers.length + 1);
-    });
-  }
-
-  void onClick2() {
-    setState(() {
-      numbers.clear();
-    });
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      theme: ThemeData(
+        textTheme: const TextTheme(
+          titleLarge: TextStyle(color: Colors.white, fontSize: 30),
+        ),
+      ),
+      home: const Scaffold(
         backgroundColor: Colors.amber,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('click Count', style: TextStyle(fontSize: 30)),
-              for (var n in numbers)
-                Text('$n', style: const TextStyle(fontSize: 30)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    iconSize: 50,
-                    onPressed: onClick,
-                    icon: const Icon(Icons.add_box_outlined),
-                  ),
-                  IconButton(
-                    iconSize: 50,
-                    onPressed: onClick2,
-                    icon: const Icon(Icons.refresh),
-                  ),
-                ],
-              ),
-            ],
+            children: [MyLargeTitle(title: 'My Large Title')],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MyLargeTitle extends StatelessWidget {
+  final String title;
+
+  const MyLargeTitle({super.key, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      style: TextStyle(
+        fontSize: 30,
+        color: Theme.of(context).textTheme.titleLarge!.color,
       ),
     );
   }
