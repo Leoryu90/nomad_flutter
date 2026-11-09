@@ -37,15 +37,30 @@ class _AppState extends State<App> {
   }
 }
 
-class MyLargeTitle extends StatelessWidget {
+class MyLargeTitle extends StatefulWidget {
   final String title;
 
   const MyLargeTitle({super.key, required this.title});
 
   @override
+  State<MyLargeTitle> createState() => _MyLargeTitleState();
+}
+
+class _MyLargeTitleState extends State<MyLargeTitle> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Text(
-      title,
+      widget.title,
       style: TextStyle(
         fontSize: 30,
         color: Theme.of(context).textTheme.titleLarge!.color,
